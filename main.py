@@ -1,6 +1,8 @@
 import pygame
 
 from constants import *
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 from player import Player
 
 
@@ -11,10 +13,15 @@ def main():
 
     updatetable = pygame.sprite.Group()
     drawtable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+
     Player.containers = updatetable, drawtable
-    
+    Asteroid.containers = (asteroids, updatetable, drawtable)
+    AsteroidField.containers = updatetable
+
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
+    asteroidfield = AsteroidField( )
 
     while True:
         # Exit the game if the window is closed
